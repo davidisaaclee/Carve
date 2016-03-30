@@ -7,19 +7,26 @@
 //
 
 import UIKit
+import SpriteKit
 
 class ViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		// Do any additional setup after loading the view, typically from a nib.
+
+		if let spriteView = self.view as? SKView {
+			spriteView.showsDrawCount = true
+			spriteView.showsNodeCount = true
+			spriteView.showsFPS = true
+		}
 	}
 
-	override func didReceiveMemoryWarning() {
-		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
+	override func viewWillAppear(animated: Bool) {
+		let scene = HelloScene(size: self.view.bounds.size)
+		if let spriteView = self.view as? SKView {
+			spriteView.presentScene(scene)
+		}
 	}
-
 
 }
 

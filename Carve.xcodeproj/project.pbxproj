@@ -12,6 +12,14 @@
 		63830CB91CA8983C007EA55E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63830CB71CA8983C007EA55E /* Main.storyboard */; };
 		63830CBB1CA8983C007EA55E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63830CBA1CA8983C007EA55E /* Assets.xcassets */; };
 		63830CBE1CA8983C007EA55E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63830CBC1CA8983C007EA55E /* LaunchScreen.storyboard */; };
+		63830CC61CA89916007EA55E /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63830CC51CA89916007EA55E /* SpriteKit.framework */; };
+		63830CC81CA899D8007EA55E /* HelloScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63830CC71CA899D8007EA55E /* HelloScene.swift */; };
+		63830CD31CA8A1E0007EA55E /* Arithmetic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63830CD01CA8A1E0007EA55E /* Arithmetic.swift */; };
+		63830CD41CA8A1E0007EA55E /* CoreExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63830CD11CA8A1E0007EA55E /* CoreExtensions.swift */; };
+		63830CD51CA8A1E0007EA55E /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63830CD21CA8A1E0007EA55E /* Vector.swift */; };
+		63830CDA1CA8A466007EA55E /* Optional+tap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63830CD81CA8A466007EA55E /* Optional+tap.swift */; };
+		63830CDB1CA8A466007EA55E /* Optional+withDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63830CD91CA8A466007EA55E /* Optional+withDefault.swift */; };
+		63D5AF961CA8D0B60024144B /* Function+compose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D5AF951CA8D0B60024144B /* Function+compose.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +30,14 @@
 		63830CBA1CA8983C007EA55E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		63830CBD1CA8983C007EA55E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		63830CBF1CA8983C007EA55E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63830CC51CA89916007EA55E /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
+		63830CC71CA899D8007EA55E /* HelloScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelloScene.swift; sourceTree = "<group>"; };
+		63830CD01CA8A1E0007EA55E /* Arithmetic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Arithmetic.swift; sourceTree = "<group>"; };
+		63830CD11CA8A1E0007EA55E /* CoreExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreExtensions.swift; sourceTree = "<group>"; };
+		63830CD21CA8A1E0007EA55E /* Vector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector.swift; sourceTree = "<group>"; };
+		63830CD81CA8A466007EA55E /* Optional+tap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Optional+tap.swift"; sourceTree = "<group>"; };
+		63830CD91CA8A466007EA55E /* Optional+withDefault.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Optional+withDefault.swift"; sourceTree = "<group>"; };
+		63D5AF951CA8D0B60024144B /* Function+compose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Function+compose.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63830CC61CA89916007EA55E /* SpriteKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +55,7 @@
 		63830CA71CA8983C007EA55E = {
 			isa = PBXGroup;
 			children = (
+				63830CC51CA89916007EA55E /* SpriteKit.framework */,
 				63830CB21CA8983C007EA55E /* Carve */,
 				63830CB11CA8983C007EA55E /* Products */,
 			);
@@ -54,14 +72,45 @@
 		63830CB21CA8983C007EA55E /* Carve */ = {
 			isa = PBXGroup;
 			children = (
+				63830CC91CA8A1C8007EA55E /* Utility */,
 				63830CB31CA8983C007EA55E /* AppDelegate.swift */,
 				63830CB51CA8983C007EA55E /* ViewController.swift */,
 				63830CB71CA8983C007EA55E /* Main.storyboard */,
 				63830CBA1CA8983C007EA55E /* Assets.xcassets */,
 				63830CBC1CA8983C007EA55E /* LaunchScreen.storyboard */,
 				63830CBF1CA8983C007EA55E /* Info.plist */,
+				63830CC71CA899D8007EA55E /* HelloScene.swift */,
 			);
 			path = Carve;
+			sourceTree = "<group>";
+		};
+		63830CC91CA8A1C8007EA55E /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				63830CD71CA8A460007EA55E /* Extensions */,
+				63830CD61CA8A1E4007EA55E /* Vector */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
+		63830CD61CA8A1E4007EA55E /* Vector */ = {
+			isa = PBXGroup;
+			children = (
+				63830CD01CA8A1E0007EA55E /* Arithmetic.swift */,
+				63830CD11CA8A1E0007EA55E /* CoreExtensions.swift */,
+				63830CD21CA8A1E0007EA55E /* Vector.swift */,
+			);
+			name = Vector;
+			sourceTree = "<group>";
+		};
+		63830CD71CA8A460007EA55E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				63830CD81CA8A466007EA55E /* Optional+tap.swift */,
+				63830CD91CA8A466007EA55E /* Optional+withDefault.swift */,
+				63D5AF951CA8D0B60024144B /* Function+compose.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,8 +185,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63830CC81CA899D8007EA55E /* HelloScene.swift in Sources */,
+				63830CD31CA8A1E0007EA55E /* Arithmetic.swift in Sources */,
 				63830CB61CA8983C007EA55E /* ViewController.swift in Sources */,
+				63830CD41CA8A1E0007EA55E /* CoreExtensions.swift in Sources */,
+				63830CD51CA8A1E0007EA55E /* Vector.swift in Sources */,
+				63D5AF961CA8D0B60024144B /* Function+compose.swift in Sources */,
+				63830CDA1CA8A466007EA55E /* Optional+tap.swift in Sources */,
 				63830CB41CA8983C007EA55E /* AppDelegate.swift in Sources */,
+				63830CDB1CA8A466007EA55E /* Optional+withDefault.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,10 +308,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Carve/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dil.Carve;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -263,10 +322,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Carve/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dil.Carve;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -289,6 +351,7 @@
 				63830CC41CA8983C007EA55E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
