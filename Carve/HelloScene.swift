@@ -10,15 +10,34 @@ import Foundation
 import SpriteKit
 
 class HelloScene: SKScene {
-	struct Avatar: GameObject {
-		var position: CGPoint
-		var velocity: CGPoint
+	struct Avatar {
+		var impulsePoint: CGPoint
+		var impulseTimestamp: NSTimeInterval
+		var impulseVelocity: CGPoint
+
+		func positionForTimestamp(timestamp: NSTimeInterval) -> CGPoint {
+			let 𝝙time = timestamp - self.impulseTimestamp
+			let gravity = CGPoint(x: 0, y: -9.8)
+
+			// p(t) = g * t^2 + v * t + c
+			return gravity * CGFloat(𝝙time) * CGFloat(𝝙time) + self.impulseVelocity * CGFloat(𝝙time) + self.impulsePoint
+		}
+
+		func velocityForTimestamp(timestamp: NSTimeInterval) -> CGPoint {
+			let 𝝙time = timestamp - self.impulseTimestamp
+			let gravity = CGPoint(x: 0, y: -9.8)
+
+			// v(t) = 2g * t + v
+			return gravity * 2.0 * CGFloat(𝝙time) + self.impulseVelocity
+		}
 	}
 
 	struct State {
+		var elapsed: NSTimeInterval
 		var avatar: Avatar
 		var curve: [CGPoint]?
 		var curveBuffer: [CGPoint]?
+		var isImpulseHappening: Bool
 	}
 
 	struct Input {
@@ -35,7 +54,13 @@ class HelloScene: SKScene {
 
 	private var contentCreated: Bool = false
 
-	lazy var state: State = State(avatar: Avatar(position: CGPoint(x: 0, y: self.size.height / 2), velocity: CGPoint(x: 10, y: 0)), curve: nil, curveBuffer: nil)
+	lazy var state: State =
+		State(
+			elapsed: 0,
+			avatar: Avatar(impulsePoint: CGPoint(x: 0, y: self.size.height / 2), impulseTimestamp: 0, impulseVelocity: CGPoint(x: 10, y: 0)),
+			curve: nil,
+			curveBuffer: nil,
+			isImpulseHappening: false)
 	var input: Input = Input(𝝙time: 0, timestamp: nil, pointer: Input.PointerState.Up)
 
 	override func didMoveToView(view: SKView) {
@@ -95,7 +120,7 @@ class HelloScene: SKScene {
 
 	func draw(state: State) {
 		if let avatar = self.childNodeWithName("avatar") {
-			avatar.position = self.state.avatar.position
+			avatar.position = self.state.avatar.positionForTimestamp(self.state.elapsed)
 		}
 
 		self.view?.layer.sublayers?.filter { $0.name == "line" }.forEach { $0.removeFromSuperlayer() }
@@ -117,32 +142,37 @@ class HelloScene: SKScene {
 	//
 
 	func reducer(state: State, input: Input) -> State {
-		let updateGame: State -> State = {
-			self.updateLine($0, pointer: input.pointer)
+		let updateFromInput: State -> State = {
+			self.updateImpulse(
+				self.updateLine(
+					self.updateTime(
+						$0,
+						𝝙time: input.𝝙time),
+					pointer: input.pointer),
+				pointer: input.pointer)
 		}
 
-		let updatePhysics: State -> State = {
-			self.updatePosition(
-				$0,
-//				self.applyGravity(
-//					$0,
-//					𝝙time: input.𝝙time),
-				𝝙time: input.𝝙time)
-		}
-
-		return updatePhysics(updateGame(state))
+		return updateFromInput(state)
 	}
 
 
 
 
 
+	func updateTime(state: State, 𝝙time: NSTimeInterval) -> State {
+		var stateʹ = state
+		stateʹ.elapsed = state.elapsed + 𝝙time
+		return stateʹ
+	}
 
 	func updateLine(state: State, pointer: Input.PointerState) -> State {
 		switch pointer {
 		case .Up:
 			if let curveBuffer = state.curveBuffer {
-				return State(avatar: state.avatar, curve: curveBuffer, curveBuffer: nil)
+				var stateʹ = state
+				stateʹ.curve = curveBuffer
+				stateʹ.curveBuffer = nil
+				return stateʹ
 			} else {
 				return state
 			}
@@ -151,24 +181,45 @@ class HelloScene: SKScene {
 			var buffer = state.curveBuffer ?? []
 			buffer.append(position)
 
-			return State(avatar: state.avatar, curve: state.curve, curveBuffer: buffer)
+			var stateʹ = state
+			stateʹ.curveBuffer = buffer
+			return stateʹ
 		}
 	}
 
-
-	func applyGravity(state: State, 𝝙time: NSTimeInterval) -> State {
-		let accelerationFactor: Double = 9.8
-
+	func updateImpulse(state: State, pointer: Input.PointerState) -> State {
 		var stateʹ = state
-		stateʹ.avatar.velocity = CGPoint(x: 0, y: 𝝙time * accelerationFactor) + state.avatar.velocity
+
+		switch pointer {
+		case .Up:
+			if state.isImpulseHappening {
+				stateʹ.isImpulseHappening = false
+				stateʹ.avatar.impulsePoint = state.avatar.positionForTimestamp(state.elapsed)
+				stateʹ.avatar.impulseTimestamp = state.elapsed
+				stateʹ.avatar.impulseVelocity = state.avatar.velocityForTimestamp(state.elapsed) + CGPoint(x: 5, y: 10)
+			}
+
+		case .Down:
+			stateʹ.isImpulseHappening = true
+		}
+
 		return stateʹ
 	}
 
-	func updatePosition(state: State, 𝝙time: NSTimeInterval) -> State {
-		var stateʹ = state
-		stateʹ.avatar.position = state.avatar.position + state.avatar.velocity * CGFloat(𝝙time)
-		return stateʹ
-	}
+
+//	func applyGravity(state: State, 𝝙time: NSTimeInterval) -> State {
+//		let accelerationFactor: Double = 9.8
+//
+//		var stateʹ = state
+//		stateʹ.avatar.velocity = CGPoint(x: 0, y: 𝝙time * accelerationFactor) + state.avatar.velocity
+//		return stateʹ
+//	}
+//
+//	func updatePosition(state: State, 𝝙time: NSTimeInterval) -> State {
+//		var stateʹ = state
+//		stateʹ.avatar.position = state.avatar.position + state.avatar.velocity * CGFloat(𝝙time)
+//		return stateʹ
+//	}
 
 
 	//
