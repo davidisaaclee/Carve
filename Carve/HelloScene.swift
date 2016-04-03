@@ -9,58 +9,18 @@
 import Foundation
 import SpriteKit
 
+struct Game {}
+
 class HelloScene: SKScene {
-	struct Avatar {
-		var impulsePoint: CGPoint
-		var impulseTimestamp: NSTimeInterval
-		var impulseVelocity: CGPoint
-
-		func positionForTimestamp(timestamp: NSTimeInterval) -> CGPoint {
-			let 𝝙time = timestamp - self.impulseTimestamp
-			let gravity = CGPoint(x: 0, y: -9.8)
-
-			// p(t) = g * t^2 + v * t + c
-			return gravity * CGFloat(𝝙time) * CGFloat(𝝙time) + self.impulseVelocity * CGFloat(𝝙time) + self.impulsePoint
-		}
-
-		func velocityForTimestamp(timestamp: NSTimeInterval) -> CGPoint {
-			let 𝝙time = timestamp - self.impulseTimestamp
-			let gravity = CGPoint(x: 0, y: -9.8)
-
-			// v(t) = 2g * t + v
-			return gravity * 2.0 * CGFloat(𝝙time) + self.impulseVelocity
-		}
-	}
-
-	struct State {
-		var elapsed: NSTimeInterval
-		var avatar: Avatar
-		var curve: [CGPoint]?
-		var curveBuffer: [CGPoint]?
-		var isImpulseHappening: Bool
-	}
-
-	struct Input {
-		enum PointerState {
-			case Down(position: CGPoint)
-			case Up
-		}
-
-		let 𝝙time: NSTimeInterval
-		let timestamp: NSTimeInterval?
-
-		var pointer: PointerState
-	}
-
 	private var contentCreated: Bool = false
 
 	lazy var state: State =
 		State(
 			elapsed: 0,
-			avatar: Avatar(impulsePoint: CGPoint(x: 0, y: self.size.height / 2), impulseTimestamp: 0, impulseVelocity: CGPoint(x: 10, y: 0)),
-			curve: nil,
-			curveBuffer: nil,
-			isImpulseHappening: false)
+			avatar: Avatar(impulsePoint: CGPoint(x: 0, y: self.size.height / 2), impulseTimestamp: 0, impulseVelocity: CGPoint(x: 20, y: 0)),
+			carve: nil,
+			carveBuffer: nil,
+			impulseState: .None)
 	var input: Input = Input(𝝙time: 0, timestamp: nil, pointer: Input.PointerState.Up)
 
 	override func didMoveToView(view: SKView) {
@@ -75,8 +35,15 @@ class HelloScene: SKScene {
 
 		guard self.contentCreated else { return }
 
-		self.input = Input(𝝙time: self.input.timestamp.map { currentTime - $0 } ?? 0, timestamp: currentTime, pointer: self.input.pointer)
-		self.state = self.reducer(self.state, input: self.input)
+		let scaledTime = currentTime * 0.5
+
+		self.input =
+			Input(
+				𝝙time: self.input.timestamp.map { scaledTime - $0 } ?? 0,
+				timestamp: scaledTime,
+				pointer: self.input.pointer)
+
+		self.state = Game.reducer(self.state, input: self.input)
 
 		self.draw(self.state)
 	}
@@ -119,107 +86,81 @@ class HelloScene: SKScene {
 
 
 	func draw(state: State) {
-		if let avatar = self.childNodeWithName("avatar") {
-			avatar.position = self.state.avatar.positionForTimestamp(self.state.elapsed)
+		func drawAvatar(state: State) {
+			if let avatar = self.childNodeWithName("avatar") {
+				avatar.position = self.state.avatar.positionForTimestamp(self.state.elapsed)
+			}
 		}
 
-		self.view?.layer.sublayers?.filter { $0.name == "line" }.forEach { $0.removeFromSuperlayer() }
+		func drawCarve(state: State) {
+			self.view?.layer.sublayers?.filter { $0.name == "carve" }.forEach { $0.removeFromSuperlayer() }
 
-		if let curve = state.curve {
+			if let carve = state.carve {
+				let carveLayer = CAShapeLayer()
+				carveLayer.name = "carve"
+				carveLayer.strokeColor = UIColor.grayColor().CGColor
+				carveLayer.lineWidth = 5
+				carveLayer.fillColor = nil
+
+				let viewPath = carve.pointSequence
+					.map { $0 + carve.offsetToIntersection }
+					.map(self.convertPointToView)
+
+				let path = Helpers.pathFromPointSequence(viewPath)
+				carveLayer.path = path
+				self.view?.layer.addSublayer(carveLayer)
+			}
+		}
+
+		drawAvatar(state)
+		drawCarve(state)
+
+
+		func debugPointSequence(pointSequence: [CGPoint], name: String, color: UIColor = UIColor.whiteColor()) {
+			self.view?.layer.sublayers?.filter { $0.name == name }.forEach { $0.removeFromSuperlayer() }
 			let lineLayer = CAShapeLayer()
-			lineLayer.name = "line"
-			lineLayer.strokeColor = UIColor.grayColor().CGColor
+			lineLayer.name = name
+			lineLayer.strokeColor = color.CGColor
 			lineLayer.fillColor = nil
 
-			let path = self.pathFromPointSequence(curve.map { CGPoint(x: $0.x, y: self.size.height - $0.y) })
+			let path = Helpers.pathFromPointSequence(pointSequence)
 
 			lineLayer.path = path
 			self.view?.layer.addSublayer(lineLayer)
 		}
+
+		let trajectory: [CGPoint] =
+			(0..<10)
+				.map { state.avatar.positionForTimestamp(Double($0) + state.elapsed) }
+				.map(self.convertPointToView)
+
+
+		let positionAtLookahead = state.avatar.positionForTimestamp(state.elapsed + Constants.lookaheadTime)
+		let velocityAtLookahead = state.avatar.velocityForTimestamp(state.elapsed + Constants.lookaheadTime)
+
+		let tangentAtLookahead: [CGPoint] =
+			(-5..<5)
+				.map { (n: Int) -> CGPoint in positionAtLookahead + velocityAtLookahead * (CGFloat(n) * 10.0) }
+				.map(self.convertPointToView)
+
+		let intersectorAtLookahead: [CGPoint] =
+			(-5..<5)
+				.map { (n: Int) -> CGPoint in velocityAtLookahead * CGFloat(n) * 10.0 }
+				.map { (v: CGPoint) -> CGPoint in CGPoint(x: -v.y, y: v.x) }
+				.map { (v: CGPoint) -> CGPoint in v + positionAtLookahead }
+				.map(self.convertPointToView)
+
+		debugPointSequence(trajectory, name: "trajectory")
+		debugPointSequence(tangentAtLookahead, name: "tangent at lookahead")
+		debugPointSequence(intersectorAtLookahead, name: "intersector at lookahead")
+		state.carveBuffer
+			.map { $0.map(self.convertPointToView) }
+			.tap { debugPointSequence($0, name: "carve buffer") }
 	}
 
 
 	//
 
-	func reducer(state: State, input: Input) -> State {
-		let updateFromInput: State -> State = {
-			self.updateImpulse(
-				self.updateLine(
-					self.updateTime(
-						$0,
-						𝝙time: input.𝝙time),
-					pointer: input.pointer),
-				pointer: input.pointer)
-		}
-
-		return updateFromInput(state)
-	}
-
-
-
-
-
-	func updateTime(state: State, 𝝙time: NSTimeInterval) -> State {
-		var stateʹ = state
-		stateʹ.elapsed = state.elapsed + 𝝙time
-		return stateʹ
-	}
-
-	func updateLine(state: State, pointer: Input.PointerState) -> State {
-		switch pointer {
-		case .Up:
-			if let curveBuffer = state.curveBuffer {
-				var stateʹ = state
-				stateʹ.curve = curveBuffer
-				stateʹ.curveBuffer = nil
-				return stateʹ
-			} else {
-				return state
-			}
-
-		case let .Down(position):
-			var buffer = state.curveBuffer ?? []
-			buffer.append(position)
-
-			var stateʹ = state
-			stateʹ.curveBuffer = buffer
-			return stateʹ
-		}
-	}
-
-	func updateImpulse(state: State, pointer: Input.PointerState) -> State {
-		var stateʹ = state
-
-		switch pointer {
-		case .Up:
-			if state.isImpulseHappening {
-				stateʹ.isImpulseHappening = false
-				stateʹ.avatar.impulsePoint = state.avatar.positionForTimestamp(state.elapsed)
-				stateʹ.avatar.impulseTimestamp = state.elapsed
-				stateʹ.avatar.impulseVelocity = state.avatar.velocityForTimestamp(state.elapsed) + CGPoint(x: 5, y: 10)
-			}
-
-		case .Down:
-			stateʹ.isImpulseHappening = true
-		}
-
-		return stateʹ
-	}
-
-
-//	func applyGravity(state: State, 𝝙time: NSTimeInterval) -> State {
-//		let accelerationFactor: Double = 9.8
-//
-//		var stateʹ = state
-//		stateʹ.avatar.velocity = CGPoint(x: 0, y: 𝝙time * accelerationFactor) + state.avatar.velocity
-//		return stateʹ
-//	}
-//
-//	func updatePosition(state: State, 𝝙time: NSTimeInterval) -> State {
-//		var stateʹ = state
-//		stateʹ.avatar.position = state.avatar.position + state.avatar.velocity * CGFloat(𝝙time)
-//		return stateʹ
-//	}
 
 
 	//
@@ -238,17 +179,32 @@ class HelloScene: SKScene {
 		return node
 	}
 
-	func pathFromPointSequence(points: [CGPoint]) -> CGPath {
+	private func debugPath(path: UIBezierPath, name: String) {
+		self.view?.layer.sublayers?.filter { $0.name == name }.forEach { $0.removeFromSuperlayer() }
+
+		let debugLayer = CAShapeLayer()
+		debugLayer.name = name
+		debugLayer.strokeColor = UIColor.greenColor().CGColor
+		debugLayer.lineWidth = 5
+		debugLayer.fillColor = nil
+
+		debugLayer.path = path.CGPath
+
+		self.view?.layer.addSublayer(debugLayer)
+	}
+
+	private func debugPoint(point: CGPoint, name: String) {
+		let size = CGPoint(x: 10, y: 10)
+		let path = UIBezierPath(ovalInRect: CGRect(origin: point - size * 0.5, size: CGSize(width: size.x, height: size.y)))
+
+		self.debugPath(path, name: name)
+	}
+
+	private func debugVector(vector: CGPoint, startingPoint: CGPoint, name: String) {
 		let path = UIBezierPath()
-		points.first.tap(path.moveToPoint)
-		points.forEach { path.addLineToPoint($0) }
-		return path.CGPath
+		path.moveToPoint(startingPoint)
+		path.addLineToPoint(startingPoint + vector)
+		self.debugPath(path, name: name)
 	}
 }
-
-protocol GameObject {
-	var position: CGPoint { get }
-	var velocity: CGPoint { get }
-}
-
 
