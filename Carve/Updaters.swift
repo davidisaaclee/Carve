@@ -21,7 +21,7 @@ extension Game {
 		case .Up:
 			if let carveBuffer = state.carveBuffer {
 				var stateʹ = state
-				stateʹ.carve = Helpers.calculateCarve(carveBuffer, avatar: state.avatar, targetTime: state.elapsed + Constants.lookaheadTime)
+				stateʹ.carve = Helpers.calculateCarve(carveBuffer, state: state, targetTime: state.elapsed + Constants.lookaheadTime)
 				stateʹ.carveBuffer = nil
 				return stateʹ
 			} else {
@@ -46,15 +46,15 @@ extension Game {
 			switch state.impulseState {
 			case .Occurring:
 				stateʹ.impulseState = .None
-				stateʹ.avatar.impulsePoint = state.avatar.positionForTimestamp(state.elapsed)
+				stateʹ.avatar.impulsePoint = state.avatarPositionForTimestamp(state.elapsed)
 				stateʹ.avatar.impulseTimestamp = state.elapsed
-				stateʹ.avatar.impulseVelocity = CGPoint(x: state.avatar.velocityForTimestamp(state.elapsed).x, y: 30)
+				stateʹ.avatar.impulseVelocity = CGPoint(x: state.avatarVelocityForTimestamp(state.elapsed).x, y: 30)
 
 			case .None:
 				break
 			}
 		case let .Down(position):
-			let distanceToAvatarCenter = (position - state.avatar.positionForTimestamp(state.elapsed)).magnitude
+			let distanceToAvatarCenter = (position - state.avatarPositionForTimestamp(state.elapsed)).magnitude
 			let impulseRadius: CGFloat = 50
 			if distanceToAvatarCenter < impulseRadius {
 				stateʹ.impulseState = .Occurring(position: position)

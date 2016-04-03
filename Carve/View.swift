@@ -5,7 +5,7 @@ struct View {
 	static func draw(state: State, scene: SKScene) {
 		func drawAvatar(state: State) {
 			if let avatar = scene.childNodeWithName("avatar") {
-				avatar.position = state.avatar.positionForTimestamp(state.elapsed)
+				avatar.position = state.avatarPositionForTimestamp(state.elapsed)
 			}
 		}
 
@@ -48,12 +48,12 @@ struct View {
 
 		let trajectory: [CGPoint] =
 			(0..<10)
-				.map { state.avatar.positionForTimestamp(Double($0) + state.elapsed) }
+				.map { state.avatarPositionForTimestamp(Double($0) + state.elapsed) }
 				.map(scene.convertPointToView)
 
 
-		let positionAtLookahead = state.avatar.positionForTimestamp(state.elapsed + Constants.lookaheadTime)
-		let velocityAtLookahead = state.avatar.velocityForTimestamp(state.elapsed + Constants.lookaheadTime)
+		let positionAtLookahead = state.avatarPositionForTimestamp(state.elapsed + Constants.lookaheadTime)
+		let velocityAtLookahead = state.avatarVelocityForTimestamp(state.elapsed + Constants.lookaheadTime)
 
 		let tangentAtLookahead: [CGPoint] =
 			(-5..<5)

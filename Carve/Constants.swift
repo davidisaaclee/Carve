@@ -7,7 +7,9 @@
 //
 
 import Foundation
+import SpriteKit
 
 struct Constants {
 	static let lookaheadTime: NSTimeInterval = 3
+	static let gravity = CGPoint(x: 0, y: -9.8)
 }

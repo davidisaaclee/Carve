@@ -17,7 +17,7 @@ class HelloScene: SKScene {
 	lazy var state: State =
 		State(
 			elapsed: 0,
-			avatar: Avatar(impulsePoint: CGPoint(x: 0, y: self.size.height / 2), impulseTimestamp: 0, impulseVelocity: CGPoint(x: 20, y: 0)),
+			avatar: State.Avatar(impulsePoint: CGPoint(x: 0, y: self.size.height / 2), impulseTimestamp: 0, impulseVelocity: CGPoint(x: 20, y: 0)),
 			carve: nil,
 			carveBuffer: nil,
 			impulseState: .None)

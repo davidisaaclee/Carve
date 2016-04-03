@@ -9,29 +9,13 @@
 import Foundation
 import SpriteKit
 
-struct Avatar {
-	var impulsePoint: CGPoint
-	var impulseTimestamp: NSTimeInterval
-	var impulseVelocity: CGPoint
-
-	func positionForTimestamp(timestamp: NSTimeInterval) -> CGPoint {
-		let 𝝙time = timestamp - self.impulseTimestamp
-		let gravity = CGPoint(x: 0, y: -9.8)
-
-		// p(t) = g * t^2 + v * t + c
-		return gravity * CGFloat(𝝙time) * CGFloat(𝝙time) + self.impulseVelocity * CGFloat(𝝙time) + self.impulsePoint
-	}
-
-	func velocityForTimestamp(timestamp: NSTimeInterval) -> CGPoint {
-		let 𝝙time = timestamp - self.impulseTimestamp
-		let gravity = CGPoint(x: 0, y: -9.8)
-
-		// v(t) = 2g * t + v
-		return gravity * 2.0 * CGFloat(𝝙time) + self.impulseVelocity
-	}
-}
-
 struct State {
+	struct Avatar {
+		var impulsePoint: CGPoint
+		var impulseTimestamp: NSTimeInterval
+		var impulseVelocity: CGPoint
+	}
+	
 	struct Carve {
 		var pointSequence: [CGPoint]
 		var offsetToIntersection: CGPoint
@@ -47,6 +31,20 @@ struct State {
 	var carve: Carve?
 	var carveBuffer: [CGPoint]?
 	var impulseState: State.Impulse
+
+	func avatarPositionForTimestamp(timestamp: NSTimeInterval) -> CGPoint {
+		let 𝝙time = timestamp - self.avatar.impulseTimestamp
+
+		// p(t) = g * t^2 + v * t + c
+		return Constants.gravity * CGFloat(𝝙time) * CGFloat(𝝙time) + self.avatar.impulseVelocity * CGFloat(𝝙time) + self.avatar.impulsePoint
+	}
+
+	func avatarVelocityForTimestamp(timestamp: NSTimeInterval) -> CGPoint {
+		let 𝝙time = timestamp - self.avatar.impulseTimestamp
+
+		// v(t) = 2g * t + v
+		return Constants.gravity * 2.0 * CGFloat(𝝙time) + self.avatar.impulseVelocity
+	}
 }
 
 struct Input {

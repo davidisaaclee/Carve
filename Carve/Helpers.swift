@@ -10,13 +10,14 @@ import Foundation
 import SpriteKit
 
 struct Helpers {
-	static func calculateCarve(pointSequence: [CGPoint], avatar: Avatar, targetTime: NSTimeInterval) -> State.Carve {
+	static func calculateCarve(pointSequence: [CGPoint], state: State, targetTime: NSTimeInterval) -> State.Carve {
 		guard pointSequence.count > 2 else {
 			return State.Carve(pointSequence: pointSequence, offsetToIntersection: CGPointZero)
 		}
 
-		let targetPoint = avatar.positionForTimestamp(targetTime)
-		let targetTangent = avatar.velocityForTimestamp(targetTime)
+		// TODO: need state here
+		let targetPoint = state.avatarPositionForTimestamp(targetTime)
+		let targetTangent = state.avatarVelocityForTimestamp(targetTime)
 		let targetSlope = targetTangent.y / targetTangent.x
 
 		let closest = pointSequence.indices.dropFirst().dropLast().sort { (before, after) -> Bool in
