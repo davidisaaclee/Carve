@@ -45,7 +45,7 @@ class HelloScene: SKScene {
 
 		self.state = Game.reducer(self.state, input: self.input)
 
-		self.draw(self.state)
+		View.draw(self.state, scene: self)
 	}
 
 	private var currentTouch: UITouch?
@@ -82,82 +82,6 @@ class HelloScene: SKScene {
 			self.input.pointer = .Up
 		}
 	}
-
-
-
-	func draw(state: State) {
-		func drawAvatar(state: State) {
-			if let avatar = self.childNodeWithName("avatar") {
-				avatar.position = self.state.avatar.positionForTimestamp(self.state.elapsed)
-			}
-		}
-
-		func drawCarve(state: State) {
-			self.view?.layer.sublayers?.filter { $0.name == "carve" }.forEach { $0.removeFromSuperlayer() }
-
-			if let carve = state.carve {
-				let carveLayer = CAShapeLayer()
-				carveLayer.name = "carve"
-				carveLayer.strokeColor = UIColor.grayColor().CGColor
-				carveLayer.lineWidth = 5
-				carveLayer.fillColor = nil
-
-				let viewPath = carve.pointSequence
-					.map { $0 + carve.offsetToIntersection }
-					.map(self.convertPointToView)
-
-				let path = Helpers.pathFromPointSequence(viewPath)
-				carveLayer.path = path
-				self.view?.layer.addSublayer(carveLayer)
-			}
-		}
-
-		drawAvatar(state)
-		drawCarve(state)
-
-
-		func debugPointSequence(pointSequence: [CGPoint], name: String, color: UIColor = UIColor.whiteColor()) {
-			self.view?.layer.sublayers?.filter { $0.name == name }.forEach { $0.removeFromSuperlayer() }
-			let lineLayer = CAShapeLayer()
-			lineLayer.name = name
-			lineLayer.strokeColor = color.CGColor
-			lineLayer.fillColor = nil
-
-			let path = Helpers.pathFromPointSequence(pointSequence)
-
-			lineLayer.path = path
-			self.view?.layer.addSublayer(lineLayer)
-		}
-
-		let trajectory: [CGPoint] =
-			(0..<10)
-				.map { state.avatar.positionForTimestamp(Double($0) + state.elapsed) }
-				.map(self.convertPointToView)
-
-
-		let positionAtLookahead = state.avatar.positionForTimestamp(state.elapsed + Constants.lookaheadTime)
-		let velocityAtLookahead = state.avatar.velocityForTimestamp(state.elapsed + Constants.lookaheadTime)
-
-		let tangentAtLookahead: [CGPoint] =
-			(-5..<5)
-				.map { (n: Int) -> CGPoint in positionAtLookahead + velocityAtLookahead * (CGFloat(n) * 10.0) }
-				.map(self.convertPointToView)
-
-		let intersectorAtLookahead: [CGPoint] =
-			(-5..<5)
-				.map { (n: Int) -> CGPoint in velocityAtLookahead * CGFloat(n) * 10.0 }
-				.map { (v: CGPoint) -> CGPoint in CGPoint(x: -v.y, y: v.x) }
-				.map { (v: CGPoint) -> CGPoint in v + positionAtLookahead }
-				.map(self.convertPointToView)
-
-		debugPointSequence(trajectory, name: "trajectory")
-		debugPointSequence(tangentAtLookahead, name: "tangent at lookahead")
-		debugPointSequence(intersectorAtLookahead, name: "intersector at lookahead")
-		state.carveBuffer
-			.map { $0.map(self.convertPointToView) }
-			.tap { debugPointSequence($0, name: "carve buffer") }
-	}
-
 
 	//
 

@@ -23,7 +23,6 @@ extension Game {
 				var stateʹ = state
 				stateʹ.carve = Helpers.calculateCarve(carveBuffer, avatar: state.avatar, targetTime: state.elapsed + Constants.lookaheadTime)
 				stateʹ.carveBuffer = nil
-
 				return stateʹ
 			} else {
 				return state
