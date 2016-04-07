@@ -15,6 +15,8 @@
 		6337630D1CB193C40088DE6B /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6337630C1CB193C40088DE6B /* Helpers.swift */; };
 		6337630F1CB194110088DE6B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6337630E1CB194110088DE6B /* Constants.swift */; };
 		633763121CB1995C0088DE6B /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633763111CB1995C0088DE6B /* View.swift */; };
+		633763141CB1B3D10088DE6B /* SequenceType+find.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633763131CB1B3D10088DE6B /* SequenceType+find.swift */; };
+		633763161CB1C1550088DE6B /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633763151CB1C1550088DE6B /* Debug.swift */; };
 		63830CB41CA8983C007EA55E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63830CB31CA8983C007EA55E /* AppDelegate.swift */; };
 		63830CB61CA8983C007EA55E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63830CB51CA8983C007EA55E /* ViewController.swift */; };
 		63830CB91CA8983C007EA55E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63830CB71CA8983C007EA55E /* Main.storyboard */; };
@@ -39,6 +41,8 @@
 		6337630C1CB193C40088DE6B /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		6337630E1CB194110088DE6B /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		633763111CB1995C0088DE6B /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		633763131CB1B3D10088DE6B /* SequenceType+find.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SequenceType+find.swift"; sourceTree = "<group>"; };
+		633763151CB1C1550088DE6B /* Debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
 		63830CB01CA8983C007EA55E /* Carve.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Carve.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63830CB31CA8983C007EA55E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63830CB51CA8983C007EA55E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -77,6 +81,7 @@
 				6337630C1CB193C40088DE6B /* Helpers.swift */,
 				6337630E1CB194110088DE6B /* Constants.swift */,
 				633763111CB1995C0088DE6B /* View.swift */,
+				633763151CB1C1550088DE6B /* Debug.swift */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -141,6 +146,7 @@
 				63830CD91CA8A466007EA55E /* Optional+withDefault.swift */,
 				63D5AF951CA8D0B60024144B /* Function+compose.swift */,
 				630BF7F31CAD575500CE2362 /* CollectionType+mapWithIndices.swift */,
+				633763131CB1B3D10088DE6B /* SequenceType+find.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -224,6 +230,8 @@
 				63830CB61CA8983C007EA55E /* ViewController.swift in Sources */,
 				630BF7F21CAD55BD00CE2362 /* Polynomials.swift in Sources */,
 				63830CD41CA8A1E0007EA55E /* CoreExtensions.swift in Sources */,
+				633763141CB1B3D10088DE6B /* SequenceType+find.swift in Sources */,
+				633763161CB1C1550088DE6B /* Debug.swift in Sources */,
 				63830CD51CA8A1E0007EA55E /* Vector.swift in Sources */,
 				6337630F1CB194110088DE6B /* Constants.swift in Sources */,
 				63D5AF961CA8D0B60024144B /* Function+compose.swift in Sources */,

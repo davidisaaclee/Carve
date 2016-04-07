@@ -68,10 +68,17 @@ struct View {
 				.map(scene.convertPointToView)
 
 		debugPointSequence(trajectory, name: "trajectory")
-		debugPointSequence(tangentAtLookahead, name: "tangent at lookahead")
-		debugPointSequence(intersectorAtLookahead, name: "intersector at lookahead")
+//		debugPointSequence(tangentAtLookahead, name: "tangent at lookahead")
+//		debugPointSequence(intersectorAtLookahead, name: "intersector at lookahead")
 		state.carveBuffer
 			.map { $0.map(scene.convertPointToView) }
 			.tap { debugPointSequence($0, name: "carve buffer") }
+
+
+		let v = state.avatarVelocityForTimestamp(state.elapsed)
+		SharedDebug.debugVector(CGPoint(x: v.x, y: -v.y),
+		                        startingPoint: state.avatarPositionForTimestamp(state.elapsed),
+		                        name: "avatar velocity",
+		                        convert: true)
 	}
 }

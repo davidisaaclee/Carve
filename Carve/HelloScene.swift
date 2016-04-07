@@ -11,6 +11,8 @@ import SpriteKit
 
 struct Game {}
 
+var SharedDebug = Debug(scene: nil)
+
 class HelloScene: SKScene {
 	private var contentCreated: Bool = false
 
@@ -28,6 +30,8 @@ class HelloScene: SKScene {
 			self.setupScene()
 			self.contentCreated = true
 		}
+		
+		SharedDebug.scene = self
 	}
 
 	override func update(currentTime: NSTimeInterval) {
@@ -35,7 +39,7 @@ class HelloScene: SKScene {
 
 		guard self.contentCreated else { return }
 
-		let scaledTime = currentTime * 0.5
+		let scaledTime = currentTime * 1
 
 		self.input =
 			Input(
@@ -101,34 +105,6 @@ class HelloScene: SKScene {
 		node.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
 		node.name = "avatar"
 		return node
-	}
-
-	private func debugPath(path: UIBezierPath, name: String) {
-		self.view?.layer.sublayers?.filter { $0.name == name }.forEach { $0.removeFromSuperlayer() }
-
-		let debugLayer = CAShapeLayer()
-		debugLayer.name = name
-		debugLayer.strokeColor = UIColor.greenColor().CGColor
-		debugLayer.lineWidth = 5
-		debugLayer.fillColor = nil
-
-		debugLayer.path = path.CGPath
-
-		self.view?.layer.addSublayer(debugLayer)
-	}
-
-	private func debugPoint(point: CGPoint, name: String) {
-		let size = CGPoint(x: 10, y: 10)
-		let path = UIBezierPath(ovalInRect: CGRect(origin: point - size * 0.5, size: CGSize(width: size.x, height: size.y)))
-
-		self.debugPath(path, name: name)
-	}
-
-	private func debugVector(vector: CGPoint, startingPoint: CGPoint, name: String) {
-		let path = UIBezierPath()
-		path.moveToPoint(startingPoint)
-		path.addLineToPoint(startingPoint + vector)
-		self.debugPath(path, name: name)
 	}
 }
 

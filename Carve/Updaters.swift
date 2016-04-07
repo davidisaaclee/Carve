@@ -65,4 +65,36 @@ extension Game {
 
 		return stateʹ
 	}
+
+	static func updateCarving(state: State) -> State {
+		var stateʹ = state
+
+		if let carve = state.carve {
+			let 𝝙time = state.elapsed - state.avatar.impulseTimestamp
+			let lookbehind = 0.1 // TODO: Store this in state?
+
+			let prevPosition = state.avatarPositionForTimeSinceImpulse(𝝙time - lookbehind)
+			let nextPosition = state.avatarPositionForTimeSinceImpulse(𝝙time)
+			let segments = Helpers.segments(carve.pointSequence.map { $0 + carve.offsetToIntersection })
+
+			if let intersectedSegment = segments.find({ Helpers.line(from: prevPosition, to: nextPosition, intersectsWithLineFrom: $0.0, to2: $0.1) != nil }) {
+				let intersectionPoint = Helpers.line(from: prevPosition, to: nextPosition, intersectsWithLineFrom: intersectedSegment.0, to2: intersectedSegment.1)!
+				let currentForce = state.avatarForceForTimestamp(state.elapsed)
+
+				let segmentDirection = intersectedSegment.1 - intersectedSegment.0
+//				let segmentSlope = segmentDirection.y / segmentDirection.x
+//				let segmentAngle = atan(segmentSlope)
+//				let parallelForce = segmentDirection.unit * currentForce.magnitude * sin(segmentAngle)
+
+				let parallelForce = segmentDirection.unit * currentForce.magnitude
+
+				stateʹ.avatar.impulsePoint = intersectionPoint
+				stateʹ.avatar.impulseVelocity = parallelForce // not really
+				stateʹ.avatar.impulseTimestamp = stateʹ.elapsed // also not really (calculate time at intersection?)
+			}
+		}
+
+		return stateʹ
+	}
+
 }

@@ -11,13 +11,14 @@ import Foundation
 extension Game {
 	static func reducer(state: State, input: Input) -> State {
 		let updateFromInput: State -> State = {
-			self.updateImpulse(
-				self.updateLine(
-					self.updateTime(
-						$0,
-						𝝙time: input.𝝙time),
-					pointer: input.pointer),
-				pointer: input.pointer)
+			self.updateCarving(
+				self.updateImpulse(
+					self.updateLine(
+						self.updateTime(
+							$0,
+							𝝙time: input.𝝙time),
+						pointer: input.pointer),
+					pointer: input.pointer))
 		}
 
 		return updateFromInput(state)
