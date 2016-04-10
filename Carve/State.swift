@@ -33,13 +33,12 @@ struct State {
 	var carveBuffer: [CGPoint]?
 	var impulseState: State.Impulse
 
-	func avatarPositionForTimeSinceImpulse(𝝙time: NSTimeInterval) -> CGPoint {
-		// p(t) = gt^2 + vt + c
-		let accelerationComponent = Constants.gravity * CGFloat(𝝙time) * CGFloat(𝝙time)
-		let velocityComponent = self.avatar.impulseVelocity * CGFloat(𝝙time)
-		let offsetComponent = self.avatar.impulsePoint
+	var positionFunction: VectorPolynomial<CGPoint> {
+		return VectorPolynomial(coefficients: [ self.avatar.impulsePoint, self.avatar.impulseVelocity, Constants.gravity ])
+	}
 
-		return accelerationComponent + velocityComponent + offsetComponent
+	func avatarPositionForTimeSinceImpulse(𝝙time: NSTimeInterval) -> CGPoint {
+		return self.positionFunction[CGFloat(𝝙time)]
 	}
 
 	func avatarPositionForTimestamp(timestamp: NSTimeInterval) -> CGPoint {
@@ -49,9 +48,7 @@ struct State {
 
 	func avatarVelocityForTimestamp(timestamp: NSTimeInterval) -> CGPoint {
 		let 𝝙time = timestamp - self.avatar.impulseTimestamp
-
-		// v(t) = 2g * t + v
-		return Constants.gravity * 2.0 * CGFloat(𝝙time) + self.avatar.impulseVelocity
+		return self.positionFunction.derivative[CGFloat(𝝙time)]
 	}
 
 	func avatarForceForTimestamp(timestamp: NSTimeInterval) -> CGPoint {
