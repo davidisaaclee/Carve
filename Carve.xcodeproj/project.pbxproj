@@ -17,6 +17,7 @@
 		633763121CB1995C0088DE6B /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633763111CB1995C0088DE6B /* View.swift */; };
 		633763141CB1B3D10088DE6B /* SequenceType+find.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633763131CB1B3D10088DE6B /* SequenceType+find.swift */; };
 		633763161CB1C1550088DE6B /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633763151CB1C1550088DE6B /* Debug.swift */; };
+		6361F0681CBAA20F00F0AFA5 /* CarveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6361F0671CBAA20F00F0AFA5 /* CarveTests.swift */; };
 		63830CB41CA8983C007EA55E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63830CB31CA8983C007EA55E /* AppDelegate.swift */; };
 		63830CB61CA8983C007EA55E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63830CB51CA8983C007EA55E /* ViewController.swift */; };
 		63830CB91CA8983C007EA55E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63830CB71CA8983C007EA55E /* Main.storyboard */; };
@@ -29,6 +30,16 @@
 		63D5AF961CA8D0B60024144B /* Function+compose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D5AF951CA8D0B60024144B /* Function+compose.swift */; };
 		B16998DBE4D657DD3019CDE7 /* Pods_Carve.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E90A41C6E20EB6D77217785 /* Pods_Carve.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6361F06A1CBAA20F00F0AFA5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 63830CA81CA8983C007EA55E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 63830CAF1CA8983C007EA55E;
+			remoteInfo = Carve;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		3E90A41C6E20EB6D77217785 /* Pods_Carve.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Carve.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -43,6 +54,9 @@
 		633763111CB1995C0088DE6B /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		633763131CB1B3D10088DE6B /* SequenceType+find.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SequenceType+find.swift"; sourceTree = "<group>"; };
 		633763151CB1C1550088DE6B /* Debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
+		6361F0651CBAA20F00F0AFA5 /* CarveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CarveTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6361F0671CBAA20F00F0AFA5 /* CarveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarveTests.swift; sourceTree = "<group>"; };
+		6361F0691CBAA20F00F0AFA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		63830CB01CA8983C007EA55E /* Carve.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Carve.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63830CB31CA8983C007EA55E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63830CB51CA8983C007EA55E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -59,6 +73,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		6361F0621CBAA20F00F0AFA5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		63830CAD1CA8983C007EA55E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -85,11 +106,21 @@
 			name = Main;
 			sourceTree = "<group>";
 		};
+		6361F0661CBAA20F00F0AFA5 /* CarveTests */ = {
+			isa = PBXGroup;
+			children = (
+				6361F0671CBAA20F00F0AFA5 /* CarveTests.swift */,
+				6361F0691CBAA20F00F0AFA5 /* Info.plist */,
+			);
+			path = CarveTests;
+			sourceTree = "<group>";
+		};
 		63830CA71CA8983C007EA55E = {
 			isa = PBXGroup;
 			children = (
 				63830CC51CA89916007EA55E /* SpriteKit.framework */,
 				63830CB21CA8983C007EA55E /* Carve */,
+				6361F0661CBAA20F00F0AFA5 /* CarveTests */,
 				63830CB11CA8983C007EA55E /* Products */,
 				CD94418862A74E7C09B04FC4 /* Pods */,
 				FE855BAA7F9FC03ED854BA61 /* Frameworks */,
@@ -100,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				63830CB01CA8983C007EA55E /* Carve.app */,
+				6361F0651CBAA20F00F0AFA5 /* CarveTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -161,6 +193,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		6361F0641CBAA20F00F0AFA5 /* CarveTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6361F06E1CBAA20F00F0AFA5 /* Build configuration list for PBXNativeTarget "CarveTests" */;
+			buildPhases = (
+				6361F0611CBAA20F00F0AFA5 /* Sources */,
+				6361F0621CBAA20F00F0AFA5 /* Frameworks */,
+				6361F0631CBAA20F00F0AFA5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6361F06B1CBAA20F00F0AFA5 /* PBXTargetDependency */,
+			);
+			name = CarveTests;
+			productName = CarveTests;
+			productReference = 6361F0651CBAA20F00F0AFA5 /* CarveTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		63830CAF1CA8983C007EA55E /* Carve */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 63830CC21CA8983C007EA55E /* Build configuration list for PBXNativeTarget "Carve" */;
@@ -191,6 +241,11 @@
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "David Lee";
 				TargetAttributes = {
+					6361F0641CBAA20F00F0AFA5 = {
+						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = YTT8U5LZQJ;
+						TestTargetID = 63830CAF1CA8983C007EA55E;
+					};
 					63830CAF1CA8983C007EA55E = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = YTT8U5LZQJ;
@@ -211,11 +266,19 @@
 			projectRoot = "";
 			targets = (
 				63830CAF1CA8983C007EA55E /* Carve */,
+				6361F0641CBAA20F00F0AFA5 /* CarveTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		6361F0631CBAA20F00F0AFA5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		63830CAE1CA8983C007EA55E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -277,6 +340,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		6361F0611CBAA20F00F0AFA5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6361F0681CBAA20F00F0AFA5 /* CarveTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		63830CAC1CA8983C007EA55E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -302,6 +373,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		6361F06B1CBAA20F00F0AFA5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 63830CAF1CA8983C007EA55E /* Carve */;
+			targetProxy = 6361F06A1CBAA20F00F0AFA5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		63830CB71CA8983C007EA55E /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -322,6 +401,30 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		6361F06C1CBAA20F00F0AFA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = CarveTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dil.CarveTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Carve.app/Carve";
+			};
+			name = Debug;
+		};
+		6361F06D1CBAA20F00F0AFA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = CarveTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dil.CarveTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Carve.app/Carve";
+			};
+			name = Release;
+		};
 		63830CC01CA8983C007EA55E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -440,6 +543,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		6361F06E1CBAA20F00F0AFA5 /* Build configuration list for PBXNativeTarget "CarveTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6361F06C1CBAA20F00F0AFA5 /* Debug */,
+				6361F06D1CBAA20F00F0AFA5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		63830CAB1CA8983C007EA55E /* Build configuration list for PBXProject "Carve" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

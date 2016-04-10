@@ -5,7 +5,7 @@ use_frameworks!
 
 target 'Carve' do
 
-pod "VectorKit", :git => "https://github.com/davidisaaclee/VectorKit.git"
+pod "VectorKit"
 
 end
 

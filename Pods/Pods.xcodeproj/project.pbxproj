@@ -10,38 +10,12 @@
 	<string>46</string>
 	<key>objects</key>
 	<dict>
-		<key>02470403BE7B4AB5B728B587A20CC61F</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXFrameworksBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
 		<key>065C696DB02F7232B2719EB6BCEF7163</key>
 		<dict>
 			<key>fileRef</key>
 			<string>3E4E89230EF59BC255123B67864ACF77</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
-		</dict>
-		<key>0A908607D1B2FBEED3CC91D1CEB79B2A</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.cfbundle</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>name</key>
-			<string>Vector.bundle</string>
-			<key>path</key>
-			<string>Vector.bundle</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
 		<key>0C6C68BE6F7C7D8F2899FD7397844DC9</key>
 		<dict>
@@ -98,28 +72,6 @@
 			<string>XCBuildConfiguration</string>
 			<key>name</key>
 			<string>Release</string>
-		</dict>
-		<key>10C8F3D9A69BD30BB4F0946D0EA6D974</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>9348CA9202AB9AE321AD110BC2081273</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>PRODUCT_NAME</key>
-				<string>Vector</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>SKIP_INSTALL</key>
-				<string>YES</string>
-				<key>WRAPPER_EXTENSION</key>
-				<string>bundle</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
 		</dict>
 		<key>1125917BC22771E65A279D644DEB36F8</key>
 		<dict>
@@ -193,16 +145,20 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
-		<key>2916BA2D32A2954B3209A15E89505064</key>
+		<key>2A456A9D3430FC03F2EC0E02696DBC89</key>
 		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXResourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
 			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>Pods_Carve.framework</string>
+			<key>path</key>
+			<string>Pods_Carve.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
 		<key>2B389FAB51F6EEA43F72CA7BDC8E8E28</key>
 		<dict>
@@ -285,15 +241,12 @@
 			<array>
 				<string>F0BDADC33AB6BF746B09C67EF454665C</string>
 				<string>332B2140ACAF6FC3E6D8D50335C92D78</string>
-				<string>4CB91952F4115A7A9F3DA1D99CC2CC45</string>
 				<string>31CE718600FD22E745C30B79D5C1987A</string>
 			</array>
 			<key>buildRules</key>
 			<array/>
 			<key>dependencies</key>
-			<array>
-				<string>88F98526C22E90AC59E4FAB0C35527DD</string>
-			</array>
+			<array/>
 			<key>isa</key>
 			<string>PBXNativeTarget</string>
 			<key>name</key>
@@ -301,7 +254,7 @@
 			<key>productName</key>
 			<string>VectorKit</string>
 			<key>productReference</key>
-			<string>B7DFE7D03B40B8C4FF2B6FDE30DE0457</string>
+			<string>E282420B5A13C3E5A3474C8A894F219F</string>
 			<key>productType</key>
 			<string>com.apple.product-type.framework</string>
 		</dict>
@@ -345,21 +298,6 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
-		<key>358AB13E85F8CC31782A81D845975622</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.framework</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>name</key>
-			<string>Pods_Carve.framework</string>
-			<key>path</key>
-			<string>Pods_Carve.framework</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
 		<key>3E4E89230EF59BC255123B67864ACF77</key>
 		<dict>
 			<key>isa</key>
@@ -373,31 +311,6 @@
 			<key>sourceTree</key>
 			<string>DEVELOPER_DIR</string>
 		</dict>
-		<key>442D2423A859055D923F8397D231BF40</key>
-		<dict>
-			<key>buildConfigurationList</key>
-			<string>B156F93B1A53BDEBBBD5715B35ABA544</string>
-			<key>buildPhases</key>
-			<array>
-				<string>9F06FEB5840F5A2D4DB6721A6D081C0F</string>
-				<string>02470403BE7B4AB5B728B587A20CC61F</string>
-				<string>2916BA2D32A2954B3209A15E89505064</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXNativeTarget</string>
-			<key>name</key>
-			<string>VectorKit-Vector</string>
-			<key>productName</key>
-			<string>VectorKit-Vector</string>
-			<key>productReference</key>
-			<string>0A908607D1B2FBEED3CC91D1CEB79B2A</string>
-			<key>productType</key>
-			<string>com.apple.product-type.bundle</string>
-		</dict>
 		<key>475B1E041F583859AD73FB64A3926596</key>
 		<dict>
 			<key>children</key>
@@ -410,41 +323,6 @@
 			<string>Targets Support Files</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>4CB91952F4115A7A9F3DA1D99CC2CC45</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>8546EDABF60228B335466B2BCA1F95D2</string>
-			</array>
-			<key>isa</key>
-			<string>PBXResourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>4E4BE0C80AFF7969D6C54CFE969B7042</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>9348CA9202AB9AE321AD110BC2081273</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>PRODUCT_NAME</key>
-				<string>Vector</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>SKIP_INSTALL</key>
-				<string>YES</string>
-				<key>WRAPPER_EXTENSION</key>
-				<string>bundle</string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
 		</dict>
 		<key>572724C94D7F3FAF9A7FC2FCBB8D03E5</key>
 		<dict>
@@ -590,6 +468,20 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>742F5755F286687153707B4020D93578</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>2A456A9D3430FC03F2EC0E02696DBC89</string>
+				<string>E282420B5A13C3E5A3474C8A894F219F</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Products</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>7A4EEBB52D5A2842C3AD004FF00A2DDF</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -617,7 +509,7 @@
 				<string>BA6428E9F66FD5A23C0A2E06ED26CD2F</string>
 				<string>BC3CA7F9E30CC8F7E2DD044DD34432FC</string>
 				<string>B81B34755CA0376C8BAB0704F310FCB6</string>
-				<string>E9D93D1F726876A620E595095B1AEEDB</string>
+				<string>742F5755F286687153707B4020D93578</string>
 				<string>475B1E041F583859AD73FB64A3926596</string>
 			</array>
 			<key>isa</key>
@@ -701,24 +593,6 @@
 			<string>XCBuildConfiguration</string>
 			<key>name</key>
 			<string>Debug</string>
-		</dict>
-		<key>8546EDABF60228B335466B2BCA1F95D2</key>
-		<dict>
-			<key>fileRef</key>
-			<string>0A908607D1B2FBEED3CC91D1CEB79B2A</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>88F98526C22E90AC59E4FAB0C35527DD</key>
-		<dict>
-			<key>isa</key>
-			<string>PBXTargetDependency</string>
-			<key>name</key>
-			<string>VectorKit-Vector</string>
-			<key>target</key>
-			<string>442D2423A859055D923F8397D231BF40</string>
-			<key>targetProxy</key>
-			<string>F14DDA84F720E61A6A439F1C2FE78CED</string>
 		</dict>
 		<key>8D4B02C2680BCB810F7483F7825B4D26</key>
 		<dict>
@@ -835,17 +709,6 @@
 			<key>name</key>
 			<string>Debug</string>
 		</dict>
-		<key>9F06FEB5840F5A2D4DB6721A6D081C0F</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
 		<key>A1EDC470AE9E39F7B5848A8D786C80EB</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -896,20 +759,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>B156F93B1A53BDEBBBD5715B35ABA544</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>10C8F3D9A69BD30BB4F0946D0EA6D974</string>
-				<string>4E4BE0C80AFF7969D6C54CFE969B7042</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
 		<key>B23B357C22F77DA267A69DD431B13F01</key>
 		<dict>
 			<key>children</key>
@@ -952,24 +801,9 @@
 			<key>productName</key>
 			<string>Pods-Carve</string>
 			<key>productReference</key>
-			<string>358AB13E85F8CC31782A81D845975622</string>
+			<string>2A456A9D3430FC03F2EC0E02696DBC89</string>
 			<key>productType</key>
 			<string>com.apple.product-type.framework</string>
-		</dict>
-		<key>B7DFE7D03B40B8C4FF2B6FDE30DE0457</key>
-		<dict>
-			<key>explicitFileType</key>
-			<string>wrapper.framework</string>
-			<key>includeInIndex</key>
-			<string>0</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>name</key>
-			<string>VectorKit.framework</string>
-			<key>path</key>
-			<string>VectorKit.framework</string>
-			<key>sourceTree</key>
-			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
 		<key>B81B34755CA0376C8BAB0704F310FCB6</key>
 		<dict>
@@ -1106,7 +940,7 @@
 			<key>mainGroup</key>
 			<string>7DB346D0F39D3F0E887471402A8071AB</string>
 			<key>productRefGroup</key>
-			<string>E9D93D1F726876A620E595095B1AEEDB</string>
+			<string>742F5755F286687153707B4020D93578</string>
 			<key>projectDirPath</key>
 			<string></string>
 			<key>projectReferences</key>
@@ -1117,7 +951,6 @@
 			<array>
 				<string>B5E387E1BCBC83AA9BF5F883A12C4740</string>
 				<string>2D00382CA5D257CCD9ABC8DDAA8B7E91</string>
-				<string>442D2423A859055D923F8397D231BF40</string>
 			</array>
 		</dict>
 		<key>DB7C8E61B6844391F11BF02116DBB58A</key>
@@ -1179,6 +1012,21 @@
 			<string>Release</string>
 			<key>isa</key>
 			<string>XCConfigurationList</string>
+		</dict>
+		<key>E282420B5A13C3E5A3474C8A894F219F</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.framework</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>name</key>
+			<string>VectorKit.framework</string>
+			<key>path</key>
+			<string>VectorKit.framework</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
 		<key>E3F04DBE5FBFF7465A0CD1C132548C6F</key>
 		<dict>
@@ -1242,21 +1090,6 @@
 			<key>name</key>
 			<string>Release</string>
 		</dict>
-		<key>E9D93D1F726876A620E595095B1AEEDB</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>358AB13E85F8CC31782A81D845975622</string>
-				<string>0A908607D1B2FBEED3CC91D1CEB79B2A</string>
-				<string>B7DFE7D03B40B8C4FF2B6FDE30DE0457</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Products</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>EBB4E69C57F1902CDC8581A3539398EA</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -1286,19 +1119,6 @@
 			<string>PBXSourcesBuildPhase</string>
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
-		</dict>
-		<key>F14DDA84F720E61A6A439F1C2FE78CED</key>
-		<dict>
-			<key>containerPortal</key>
-			<string>D41D8CD98F00B204E9800998ECF8427E</string>
-			<key>isa</key>
-			<string>PBXContainerItemProxy</string>
-			<key>proxyType</key>
-			<string>1</string>
-			<key>remoteGlobalIDString</key>
-			<string>442D2423A859055D923F8397D231BF40</string>
-			<key>remoteInfo</key>
-			<string>VectorKit-Vector</string>
 		</dict>
 		<key>F5F19DD26BF4135F3FB5C97BAC3BD820</key>
 		<dict>

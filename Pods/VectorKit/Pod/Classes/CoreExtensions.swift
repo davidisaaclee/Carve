@@ -6,10 +6,8 @@ import Foundation
 import CoreGraphics
 
 
-// MARK: - Adopting the Vector protocol
-
 extension CGPoint: Vector {
-	public var numberOfDimensions: Int { return 2 }
+	public static var numberOfDimensions: Int { return 2 }
 
 	public init<T where T: CollectionType, T.Generator.Element == CGFloat>(collection: T) {
 		var g = collection.generate()
@@ -31,11 +29,10 @@ extension CGPoint: Vector {
 	}
 }
 
-
 extension CGSize: Vector {
 	public typealias Index = Int
-
-	public var numberOfDimensions: Int { return 2 }
+	
+	public static var numberOfDimensions: Int { return 2 }
 
 	public init<T where T: CollectionType, T.Generator.Element == CGFloat>(collection: T) {
 		var g = collection.generate()

@@ -1,13 +1,7 @@
-//
-//  Vector.swift
-//
-//  Created by David Lee on 1/13/16.
-//  Copyright © 2016 David Lee. All rights reserved.
-//
-
 import Foundation
 
-public protocol Vector: CollectionType {
+/// A dimensional data structure.
+public protocol Vector: CollectionType, Ring {
 	associatedtype Generator = IndexingGenerator<Self>
 
 	/// The type which represents this vector type's length or magnitude.
@@ -17,7 +11,7 @@ public protocol Vector: CollectionType {
 	init<T where T: CollectionType, T.Generator.Element == Self.Generator.Element>(collection: T)
 
 	/// How many dimensions does this vector have?
-	var numberOfDimensions: Int { get }
+	static var numberOfDimensions: Int { get }
 
 	/// The magnitude of the vector.
 	var magnitude: LengthType { get }
@@ -29,7 +23,7 @@ public protocol Vector: CollectionType {
 	var unit: Self { get }
 
 	/// The negation of this vector, which points in the opposite direction as this vector, with an equal magnitude.
-	var negate: Self { get }
+	var negative: Self { get }
 
 
 	/// Produces a vector by translating this vector by `operand`.
@@ -45,6 +39,11 @@ public protocol Vector: CollectionType {
 	/// Produces a vector by scaling this vector by a scalar.
 	func scale(scalar: Self.Generator.Element) -> Self
 
+	/// Produces a vector by performing a piecewise multiplication of this vector by another vector.
+	func piecewiseMultiply(vector: Self) -> Self
+	func piecewiseMultiply<V: Vector where V.Generator.Element == Self.Generator.Element>(vector: V) -> Self
+	func piecewiseMultiply<V: Vector where V.Generator.Element == Self.Generator.Element>(vector: V) -> V
+
 
 	// MARK: - Methods with default implementations
 
@@ -57,6 +56,11 @@ public protocol Vector: CollectionType {
 	func * (vector: Self, scalar: Self.Generator.Element) -> Self
 	func * (scalar: Self.Generator.Element, vector: Self) -> Self
 
+	/// Produces a vector by multiplying two vectors piecewise.
+	func * (lhs: Self, rhs: Self) -> Self
+	func * <V: Vector where V.Generator.Element == Self.Generator.Element>(lhs: Self, rhs: V) -> Self
+	func * <V: Vector where V.Generator.Element == Self.Generator.Element>(lhs: Self, rhs: V) -> V
+
 	/// Produces a vector by translating the right-hand vector by the negation of the left-hand vector.
 	func - (randl: Self, randr: Self) -> Self
 	func - <V: Vector where V.Generator.Element == Self.Generator.Element>(randl: Self, randr: V) -> Self
@@ -64,6 +68,27 @@ public protocol Vector: CollectionType {
 
 	/// Negates a vector.
 	prefix func - (rand: Self) -> Self
+}
+
+
+// MARK: - Aliases
+
+public extension Vector {
+	public var normalized: Self {
+		return self.unit
+	}
+
+	public var length: Self.LengthType {
+		return self.magnitude
+	}
+
+	public func distanceTo(vector: Self) -> Self.LengthType {
+		return (vector - self).magnitude
+	}
+
+	public func distanceTo<V: Vector where V.Generator.Element == Self.Generator.Element>(vector: V) -> Self.LengthType {
+		return self.distanceTo(Self(collection: vector))
+	}
 }
 
 
@@ -81,7 +106,16 @@ public extension Vector where Self.Index == Int {
 	}
 
 	public var endIndex: Int {
-		return self.numberOfDimensions
+		return self.dynamicType.numberOfDimensions
+	}
+}
+
+public extension Vector where Self.Generator.Element: Ring {
+	public static var additionIdentity: Self {
+		return Self(collection: Array(count: Self.numberOfDimensions, repeatedValue: Self.Generator.Element.additionIdentity))
+	}
+	public static var multiplicationIdentity: Self {
+		return Self(collection: Array(count: Self.numberOfDimensions, repeatedValue: Self.Generator.Element.multiplicationIdentity))
 	}
 }
 
@@ -107,21 +141,34 @@ public func * <V: Vector> (scalar: V.Generator.Element, vector: V) -> V {
 }
 
 
+public func * <V: Vector>(randl: V, randr: V) -> V {
+	return randl.piecewiseMultiply(randr)
+}
+
+public func * <V1: Vector, V2: Vector where V1.Generator.Element == V2.Generator.Element> (randl: V1, randr: V2) -> V1 {
+	return randl.piecewiseMultiply(randr)
+}
+
+public func * <V1: Vector, V2: Vector where V1.Generator.Element == V2.Generator.Element> (randl: V1, randr: V2) -> V2 {
+	return randl.piecewiseMultiply(randr)
+}
+
+
 public func - <V: Vector>(randl: V, randr: V) -> V {
-	return randl.sum(randr.negate)
+	return randl.sum(randr.negative)
 }
 
 public func - <V1: Vector, V2: Vector where V1.Generator.Element == V2.Generator.Element> (randl: V1, randr: V2) -> V1 {
-	return randl.sum(randr.negate)
+	return randl.sum(randr.negative)
 }
 
 public func - <V1: Vector, V2: Vector where V1.Generator.Element == V2.Generator.Element> (randl: V1, randr: V2) -> V2 {
-	return randl.sum(randr.negate)
+	return randl.sum(randr.negative)
 }
 
 
 public prefix func - <V: Vector>(rand: V) -> V {
-	return rand.negate
+	return rand.negative
 }
 
 
@@ -139,7 +186,7 @@ public func == <V: Vector where V.Generator.Element: Equatable>(lhs: V, rhs: V) 
 
 // MARK: - Default implementations for specific element types
 
-public extension Vector where Generator.Element: Ring {
+public extension Vector where Self.Generator.Element: Ring {
 	public func sum(operand: Self) -> Self {
 		return self.dynamicType.init(collection: Array(zip(self, operand).map { $0 + $1 }))
 	}
@@ -156,6 +203,18 @@ public extension Vector where Generator.Element: Ring {
 		return self.dynamicType.init(collection: self.map { $0 * scalar })
 	}
 
+	public func piecewiseMultiply(vector: Self) -> Self {
+		return Self(collection: zip(self, vector).map { (lhs, rhs) in lhs * rhs })
+	}
+
+	public func piecewiseMultiply <V: Vector where V.Generator.Element == Self.Generator.Element> (vector: V) -> Self {
+		return Self(collection: zip(self, vector).map { (lhs, rhs) in lhs * rhs })
+	}
+
+	public func piecewiseMultiply <V: Vector where V.Generator.Element == Self.Generator.Element> (vector: V) -> V {
+		return V(collection: zip(self, vector).map { (lhs, rhs) in lhs * rhs })
+	}
+
 	public var squaredMagnitude: Self.Generator.Element {
 		return self.reduce(Self.Generator.Element.additionIdentity) { $0 + $1 * $1 }
 	}
@@ -170,7 +229,7 @@ public extension Vector where Generator.Element: Field, LengthType == Self.Gener
 		return self * (self.dynamicType.LengthType.multiplicationIdentity / self.magnitude)
 	}
 
-	public var negate: Self {
+	public var negative: Self {
 		return self * -1.0
 	}
 }
