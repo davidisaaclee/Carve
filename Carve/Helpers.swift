@@ -8,6 +8,7 @@
 
 import Foundation
 import SpriteKit
+import VectorKit
 
 struct Helpers {
 	static func calculateCarve(pointSequence: [CGPoint], state: State, targetTime: NSTimeInterval) -> State.Carve {

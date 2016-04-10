@@ -5,23 +5,11 @@ Extensions to commonly-used vector types in Apple's core libraries.
 import Foundation
 import CoreGraphics
 
-// 
-extension CGFloat: ExponentiableArithmeticType {
-	public static var zero: CGFloat = 0
-	public func toThePowerOf(exponent: CGFloat) -> CGFloat {
-		return pow(self, exponent)
-	}
-}
 
-extension Int: ArithmeticType {
-	public static let zero: Int = 0
-}
+// MARK: - Adopting the Vector protocol
 
 extension CGPoint: Vector {
-	public typealias Index = Int
-
-	public var startIndex: Int { return 0 }
-	public var endIndex: Int { return 2 }
+	public var numberOfDimensions: Int { return 2 }
 
 	public init<T where T: CollectionType, T.Generator.Element == CGFloat>(collection: T) {
 		var g = collection.generate()
@@ -47,8 +35,7 @@ extension CGPoint: Vector {
 extension CGSize: Vector {
 	public typealias Index = Int
 
-	public var startIndex: Int { return 0 }
-	public var endIndex: Int { return 2 }
+	public var numberOfDimensions: Int { return 2 }
 
 	public init<T where T: CollectionType, T.Generator.Element == CGFloat>(collection: T) {
 		var g = collection.generate()

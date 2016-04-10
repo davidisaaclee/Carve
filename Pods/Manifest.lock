@@ -1,0 +1,19 @@
+PODS:
+  - VectorKit (0.1.0)
+
+DEPENDENCIES:
+  - VectorKit (from `https://github.com/davidisaaclee/VectorKit.git`)
+
+EXTERNAL SOURCES:
+  VectorKit:
+    :git: https://github.com/davidisaaclee/VectorKit.git
+
+CHECKOUT OPTIONS:
+  VectorKit:
+    :commit: 8325fbbbe4b5934d65cae464a86dd465413468e3
+    :git: https://github.com/davidisaaclee/VectorKit.git
+
+SPEC CHECKSUMS:
+  VectorKit: 9d88561339ac280520461ecd7bee05118d656324
+
+COCOAPODS: 0.39.0

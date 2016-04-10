@@ -24,15 +24,15 @@
 		63830CBE1CA8983C007EA55E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63830CBC1CA8983C007EA55E /* LaunchScreen.storyboard */; };
 		63830CC61CA89916007EA55E /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63830CC51CA89916007EA55E /* SpriteKit.framework */; };
 		63830CC81CA899D8007EA55E /* HelloScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63830CC71CA899D8007EA55E /* HelloScene.swift */; };
-		63830CD31CA8A1E0007EA55E /* Arithmetic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63830CD01CA8A1E0007EA55E /* Arithmetic.swift */; };
-		63830CD41CA8A1E0007EA55E /* CoreExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63830CD11CA8A1E0007EA55E /* CoreExtensions.swift */; };
-		63830CD51CA8A1E0007EA55E /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63830CD21CA8A1E0007EA55E /* Vector.swift */; };
 		63830CDA1CA8A466007EA55E /* Optional+tap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63830CD81CA8A466007EA55E /* Optional+tap.swift */; };
 		63830CDB1CA8A466007EA55E /* Optional+withDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63830CD91CA8A466007EA55E /* Optional+withDefault.swift */; };
 		63D5AF961CA8D0B60024144B /* Function+compose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D5AF951CA8D0B60024144B /* Function+compose.swift */; };
+		B16998DBE4D657DD3019CDE7 /* Pods_Carve.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E90A41C6E20EB6D77217785 /* Pods_Carve.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3E90A41C6E20EB6D77217785 /* Pods_Carve.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Carve.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3EB72AC63A650D7897794750 /* Pods-Carve.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Carve.release.xcconfig"; path = "Pods/Target Support Files/Pods-Carve/Pods-Carve.release.xcconfig"; sourceTree = "<group>"; };
 		630BF7F11CAD55BD00CE2362 /* Polynomials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Polynomials.swift; sourceTree = "<group>"; };
 		630BF7F31CAD575500CE2362 /* CollectionType+mapWithIndices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CollectionType+mapWithIndices.swift"; sourceTree = "<group>"; };
 		633763061CB193110088DE6B /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
@@ -52,12 +52,10 @@
 		63830CBF1CA8983C007EA55E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		63830CC51CA89916007EA55E /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
 		63830CC71CA899D8007EA55E /* HelloScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelloScene.swift; sourceTree = "<group>"; };
-		63830CD01CA8A1E0007EA55E /* Arithmetic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Arithmetic.swift; sourceTree = "<group>"; };
-		63830CD11CA8A1E0007EA55E /* CoreExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreExtensions.swift; sourceTree = "<group>"; };
-		63830CD21CA8A1E0007EA55E /* Vector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector.swift; sourceTree = "<group>"; };
 		63830CD81CA8A466007EA55E /* Optional+tap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Optional+tap.swift"; sourceTree = "<group>"; };
 		63830CD91CA8A466007EA55E /* Optional+withDefault.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Optional+withDefault.swift"; sourceTree = "<group>"; };
 		63D5AF951CA8D0B60024144B /* Function+compose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Function+compose.swift"; sourceTree = "<group>"; };
+		B125EF070381A045DD7DA41B /* Pods-Carve.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Carve.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Carve/Pods-Carve.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +64,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63830CC61CA89916007EA55E /* SpriteKit.framework in Frameworks */,
+				B16998DBE4D657DD3019CDE7 /* Pods_Carve.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +91,8 @@
 				63830CC51CA89916007EA55E /* SpriteKit.framework */,
 				63830CB21CA8983C007EA55E /* Carve */,
 				63830CB11CA8983C007EA55E /* Products */,
+				CD94418862A74E7C09B04FC4 /* Pods */,
+				FE855BAA7F9FC03ED854BA61 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -123,20 +124,9 @@
 			isa = PBXGroup;
 			children = (
 				63830CD71CA8A460007EA55E /* Extensions */,
-				63830CD61CA8A1E4007EA55E /* Vector */,
 				630BF7F11CAD55BD00CE2362 /* Polynomials.swift */,
 			);
 			name = Utility;
-			sourceTree = "<group>";
-		};
-		63830CD61CA8A1E4007EA55E /* Vector */ = {
-			isa = PBXGroup;
-			children = (
-				63830CD01CA8A1E0007EA55E /* Arithmetic.swift */,
-				63830CD11CA8A1E0007EA55E /* CoreExtensions.swift */,
-				63830CD21CA8A1E0007EA55E /* Vector.swift */,
-			);
-			name = Vector;
 			sourceTree = "<group>";
 		};
 		63830CD71CA8A460007EA55E /* Extensions */ = {
@@ -151,6 +141,23 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
+		CD94418862A74E7C09B04FC4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B125EF070381A045DD7DA41B /* Pods-Carve.debug.xcconfig */,
+				3EB72AC63A650D7897794750 /* Pods-Carve.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		FE855BAA7F9FC03ED854BA61 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3E90A41C6E20EB6D77217785 /* Pods_Carve.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -158,9 +165,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 63830CC21CA8983C007EA55E /* Build configuration list for PBXNativeTarget "Carve" */;
 			buildPhases = (
+				AB225C4A91294179A54D2CF4 /* Check Pods Manifest.lock */,
 				63830CAC1CA8983C007EA55E /* Sources */,
 				63830CAD1CA8983C007EA55E /* Frameworks */,
 				63830CAE1CA8983C007EA55E /* Resources */,
+				3BA4D552C788B5C71EE258CE /* Embed Pods Frameworks */,
+				56148F093D044B06BD94024D /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -218,6 +228,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3BA4D552C788B5C71EE258CE /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Carve/Pods-Carve-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		56148F093D044B06BD94024D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Carve/Pods-Carve-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AB225C4A91294179A54D2CF4 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		63830CAC1CA8983C007EA55E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -226,13 +284,10 @@
 				63830CC81CA899D8007EA55E /* HelloScene.swift in Sources */,
 				633763121CB1995C0088DE6B /* View.swift in Sources */,
 				6337630B1CB193A90088DE6B /* Updaters.swift in Sources */,
-				63830CD31CA8A1E0007EA55E /* Arithmetic.swift in Sources */,
 				63830CB61CA8983C007EA55E /* ViewController.swift in Sources */,
 				630BF7F21CAD55BD00CE2362 /* Polynomials.swift in Sources */,
-				63830CD41CA8A1E0007EA55E /* CoreExtensions.swift in Sources */,
 				633763141CB1B3D10088DE6B /* SequenceType+find.swift in Sources */,
 				633763161CB1C1550088DE6B /* Debug.swift in Sources */,
-				63830CD51CA8A1E0007EA55E /* Vector.swift in Sources */,
 				6337630F1CB194110088DE6B /* Constants.swift in Sources */,
 				63D5AF961CA8D0B60024144B /* Function+compose.swift in Sources */,
 				63830CDA1CA8A466007EA55E /* Optional+tap.swift in Sources */,
@@ -354,6 +409,7 @@
 		};
 		63830CC31CA8983C007EA55E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B125EF070381A045DD7DA41B /* Pods-Carve.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -368,6 +424,7 @@
 		};
 		63830CC41CA8983C007EA55E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3EB72AC63A650D7897794750 /* Pods-Carve.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";

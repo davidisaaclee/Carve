@@ -8,6 +8,7 @@
 
 import Foundation
 import SpriteKit
+import VectorKit
 
 extension Game {
 	static func updateTime(state: State, 𝝙time: NSTimeInterval) -> State {

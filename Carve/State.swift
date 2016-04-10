@@ -8,6 +8,7 @@
 
 import Foundation
 import SpriteKit
+import VectorKit
 
 struct State {
 	struct Avatar {
@@ -34,9 +35,11 @@ struct State {
 
 	func avatarPositionForTimeSinceImpulse(𝝙time: NSTimeInterval) -> CGPoint {
 		// p(t) = gt^2 + vt + c
-		return Constants.gravity * CGFloat(𝝙time) * CGFloat(𝝙time)
-			+ self.avatar.impulseVelocity * CGFloat(𝝙time)
-			+ self.avatar.impulsePoint
+		let accelerationComponent = Constants.gravity * CGFloat(𝝙time) * CGFloat(𝝙time)
+		let velocityComponent = self.avatar.impulseVelocity * CGFloat(𝝙time)
+		let offsetComponent = self.avatar.impulsePoint
+
+		return accelerationComponent + velocityComponent + offsetComponent
 	}
 
 	func avatarPositionForTimestamp(timestamp: NSTimeInterval) -> CGPoint {

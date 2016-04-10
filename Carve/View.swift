@@ -1,5 +1,6 @@
 import Foundation
 import SpriteKit
+import VectorKit
 
 struct View {
 	static func draw(state: State, scene: SKScene) {

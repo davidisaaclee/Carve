@@ -1,5 +1,6 @@
 import Foundation
 import SpriteKit
+import VectorKit
 
 struct Debug {
 	var scene: SKScene?
