@@ -33,7 +33,7 @@ struct Helpers {
 			let beforeSlope = slopeOfTangentToPointSequence(pointSequence, atIndex: before)
 			let afterSlope = slopeOfTangentToPointSequence(pointSequence, atIndex: after)
 
-			return (beforeSlope - targetSlope) < (afterSlope - targetSlope)
+			return abs(beforeSlope - targetSlope) < abs(afterSlope - targetSlope)
 		}.first!
 
 		return State.Carve(pointSequence: pointSequence, offsetToIntersection: targetPoint - pointSequence[closest])

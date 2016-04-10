@@ -16,13 +16,11 @@ var SharedDebug = Debug(scene: nil)
 class HelloScene: SKScene {
 	private var contentCreated: Bool = false
 
-	lazy var state: State =
-		State(
-			elapsed: 0,
-			avatar: State.Avatar(impulsePoint: CGPoint(x: 0, y: self.size.height / 2), impulseTimestamp: 0, impulseVelocity: CGPoint(x: 20, y: 0)),
-			carve: nil,
-			carveBuffer: nil,
-			impulseState: .None)
+	var initialAvatar: State.Avatar {
+		return State.Avatar(impulsePoint: CGPoint(x: 0, y: self.size.height / 2), impulseTimestamp: 0, impulseVelocity: CGPoint(x: 20, y: 0))
+	}
+
+	lazy var state: State = State(avatar: self.initialAvatar)
 	var input: Input = Input(𝝙time: 0, timestamp: nil, pointer: Input.PointerState.Up)
 
 	override func didMoveToView(view: SKView) {
@@ -97,6 +95,11 @@ class HelloScene: SKScene {
 		self.backgroundColor = SKColor.blueColor()
 		self.scaleMode = .AspectFit
 
+		let resetGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(HelloScene.resetScene))
+		resetGestureRecognizer.numberOfTapsRequired = 2
+		resetGestureRecognizer.numberOfTouchesRequired = 2
+		self.view?.addGestureRecognizer(resetGestureRecognizer)
+
 		self.addChild(self.makeRectNode())
 	}
 
@@ -105,6 +108,10 @@ class HelloScene: SKScene {
 		node.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
 		node.name = "avatar"
 		return node
+	}
+
+	@objc private func resetScene(recognizer: UIGestureRecognizer) {
+		self.state = State(avatar: self.initialAvatar)
 	}
 }
 

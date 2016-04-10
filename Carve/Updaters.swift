@@ -80,14 +80,15 @@ extension Game {
 
 			if let intersectedSegment = segments.find({ Helpers.line(from: prevPosition, to: nextPosition, intersectsWithLineFrom: $0.0, to2: $0.1) != nil }) {
 				let intersectionPoint = Helpers.line(from: prevPosition, to: nextPosition, intersectsWithLineFrom: intersectedSegment.0, to2: intersectedSegment.1)!
-				let currentForce = state.avatarForceForTimestamp(state.elapsed)
+//				let currentForce = state.avatarForceForTimestamp(state.elapsed)
+				let currentVelocity = state.avatarVelocityForTimestamp(state.elapsed)
 
 				let segmentDirection = intersectedSegment.1 - intersectedSegment.0
 //				let segmentSlope = segmentDirection.y / segmentDirection.x
 //				let segmentAngle = atan(segmentSlope)
 //				let parallelForce = segmentDirection.unit * currentForce.magnitude * sin(segmentAngle)
 
-				let parallelForce = segmentDirection.unit * currentForce.magnitude
+				let parallelForce = segmentDirection.normalized * currentVelocity.magnitude
 
 				stateʹ.avatar.impulsePoint = intersectionPoint
 				stateʹ.avatar.impulseVelocity = parallelForce // not really

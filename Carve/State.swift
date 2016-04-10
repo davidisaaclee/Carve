@@ -27,11 +27,11 @@ struct State {
 		case None
 	}
 
-	var elapsed: NSTimeInterval
+	var elapsed: NSTimeInterval = 0
 	var avatar: Avatar
-	var carve: Carve?
-	var carveBuffer: [CGPoint]?
-	var impulseState: State.Impulse
+	var carve: Carve? = nil
+	var carveBuffer: [CGPoint]? = nil
+	var impulseState: State.Impulse = .None
 
 	var positionFunction: VectorPolynomial<CGPoint> {
 		return VectorPolynomial(coefficients: [ self.avatar.impulsePoint, self.avatar.impulseVelocity, Constants.gravity ])
@@ -54,6 +54,10 @@ struct State {
 	func avatarForceForTimestamp(timestamp: NSTimeInterval) -> CGPoint {
 		let mass: CGFloat = 1
 		return Constants.gravity * mass
+	}
+
+	init(avatar: State.Avatar) {
+		self.avatar = avatar
 	}
 }
 
